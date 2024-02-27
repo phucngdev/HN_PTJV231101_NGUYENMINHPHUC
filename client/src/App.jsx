@@ -1,13 +1,14 @@
 import { useState } from "react";
 import "./App.css";
-import ModalDelete from "./components/ModalDelete";
-import ModalBlock from "./components/ModalBlock";
 import Form from "./components/Form";
 import Table from "./layout/Table";
 
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [search, setSearch] = useState("");
+  const handleRefresh = () => {
+    setSearch("");
+  };
 
   return (
     <>
@@ -32,7 +33,11 @@ function App() {
                 className="form-control"
                 placeholder="Tìm kiếm theo email"
               />
-              <i className="fa-solid fa-arrows-rotate" title="Refresh" />
+              <i
+                onClick={handleRefresh}
+                className="fa-solid fa-arrows-rotate"
+                title="Refresh"
+              />
             </div>
             {/* Danh sách nhân viên */}
             <Table search={search}></Table>

@@ -4,6 +4,7 @@ import { findAll } from "../services/user.service";
 import ModalBlock from "../components/ModalBlock";
 import ModalDelete from "../components/ModalDelete";
 import FormEdit from "../components/FormEdit";
+import _debounce from "lodash/debounce";
 
 const Table = ({ search }) => {
   const dispatch = useDispatch();
@@ -12,13 +13,28 @@ const Table = ({ search }) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
+  const [filteredData, setFilteredData] = useState([]);
 
   const loadDataUser = () => {
     dispatch(findAll());
   };
+
   useEffect(() => {
     loadDataUser();
   }, []);
+
+  useEffect(() => {
+    const debouncedFilter = _debounce(() => {
+      const filtered = dataUser?.filter((user) =>
+        user.email.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredData(filtered);
+    }, 300);
+    debouncedFilter();
+    return () => {
+      debouncedFilter.cancel();
+    };
+  }, [search, dataUser]);
 
   const handleShowBlock = (id) => {
     setShowBlock(true);
@@ -34,11 +50,6 @@ const Table = ({ search }) => {
     setShowEdit(true);
     setSelectedId(id);
   };
-
-  const filteredData = dataUser.filter((user) =>
-    user.email.toLowerCase().includes(search.toLowerCase())
-  );
-  console.log(filteredData);
 
   return (
     <>
@@ -63,7 +74,9 @@ const Table = ({ search }) => {
             <th>Email</th>
             <th>Địa chỉ</th>
             <th>Trạng thái</th>
-            <th colSpan={2}>Chức năng</th>
+            <th style={{ textAlign: "center" }} colSpan={3}>
+              Chức năng
+            </th>
           </tr>
         </thead>
         <tbody>

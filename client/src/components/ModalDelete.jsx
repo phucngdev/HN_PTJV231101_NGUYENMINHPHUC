@@ -12,7 +12,6 @@ const ModalDelete = ({ selectedId, setShowDelete }) => {
     setShowDelete(false);
   };
   const handleDelete = () => {
-    console.log(selectedId);
     deleteDataUser();
     message.success({
       content: "remove successful. Welcome!",

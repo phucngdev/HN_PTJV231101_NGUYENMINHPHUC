@@ -8,7 +8,7 @@ import { message } from "antd";
 const FormEdit = ({ selectedId, setShowEdit }) => {
   const dispatch = useDispatch();
   const dataUser = useSelector((state) => state.user.userEdit);
-  console.log(dataUser);
+
   const loadDataUser = () => {
     dispatch(findOne(selectedId));
   };
@@ -25,9 +25,12 @@ const FormEdit = ({ selectedId, setShowEdit }) => {
     });
   }, [dataUser]);
 
+  // hàm close form
   const handleCloseForm = () => {
     setShowEdit(false);
   };
+
+  // hàm validate và submit form
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -49,6 +52,7 @@ const FormEdit = ({ selectedId, setShowEdit }) => {
         ...dataUser,
         name: values.name,
         email: values.email,
+        address: values.address,
         dateOfBirth: values.dateOfBirth,
         updatedTime: new Date().toLocaleString(),
       };

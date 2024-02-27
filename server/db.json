@@ -3,39 +3,30 @@
     {
       "id": "9f29919a-0455-4ef1-a754-82d661c2f7b1",
       "status": 1,
-      "name": "áda",
-      "email": "phucnguyen09022003@gmail.com",
+      "name": "Nguyen Van A",
+      "email": "nguyenvana09022003@gmail.com",
       "dateOfBirth": "2024-02-02",
-      "address": "Việt cường",
+      "address": "Hà Nội\n",
       "createdTime": "20:21:57 26/2/2024",
-      "updatedTime": "11:32:34 27/2/2024"
-    },
-    {
-      "id": "d785c0e3-cda8-4e88-ae39-b88bba1d6bd9",
-      "status": 1,
-      "name": "Phúc nguyễnbnbnbn",
-      "email": "phucnguyen09022003@gmail.com",
-      "dateOfBirth": "2024-02-07",
-      "address": "Việt cường",
-      "createdTime": "23:21:00 26/2/2024"
-    },
-    {
-      "id": "26d2519c-947c-4d65-807e-8f319e13c16f",
-      "status": 1,
-      "name": "Phúc nguyễn",
-      "email": "phucnguyen09022003@gmail.com",
-      "dateOfBirth": "2024-02-08",
-      "address": "Việt cường",
-      "createdTime": "11:28:41 27/2/2024"
+      "updatedTime": "19:01:26 27/2/2024"
     },
     {
       "id": "55b01690-8452-433a-8e3d-a218d01bcd18",
       "status": 1,
-      "name": "Phúc nguyễn",
-      "email": "cu@gmail.com",
+      "name": "Trần Thị B",
+      "email": "b1999@gmail.com",
       "dateOfBirth": "2024-02-09",
-      "address": "Việt cường",
+      "address": "Hải Phòng",
       "createdTime": "11:39:43 27/2/2024"
+    },
+    {
+      "id": "785a00fc-fac5-4de2-9f56-9149ce8f9b34",
+      "status": 1,
+      "name": "Lê Văn B",
+      "email": "lvb2003@gmail.com",
+      "dateOfBirth": "2024-01-29",
+      "address": "Cần Thơ",
+      "createdTime": "18:43:23 27/2/2024"
     }
   ]
 }

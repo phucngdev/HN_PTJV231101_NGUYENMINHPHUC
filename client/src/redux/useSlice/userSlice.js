@@ -22,13 +22,14 @@ const userSlice = createSlice({
         state.status = "Pending!";
       })
       .addCase(findAll.fulfilled, (state, action) => {
-        state.status = "Successfully!"; // trả về trạng thái thành công
-        state.data = action.payload; // gán lại dữ liệu lấy từ api cho giá trị khởi tạo
+        state.status = "Successfully!";
+        state.data = action.payload;
       })
       .addCase(findAll.rejected, (state, action) => {
         state.status = "Failed!";
-        state.error = action.error.message; // lấy ra nội dung lỗi
+        state.error = action.error.message;
       })
+      // ----------- remove ----------------------------------------------------
       .addCase(remove.pending, (state) => {
         state.status = "Pending!";
       })
@@ -39,6 +40,7 @@ const userSlice = createSlice({
           (user) => user.id !== action.payload?.data.id
         );
       })
+      // ----------- findOne ----------------------------------------------------
       .addCase(findOne.pending, (state) => {
         state.status = "Pending!";
       })
@@ -50,17 +52,19 @@ const userSlice = createSlice({
         state.status = "Failed!";
         state.error = action.error.message;
       })
+      // ----------- post ----------------------------------------------------
       .addCase(post.pending, (state) => {
         state.status = "Pending!";
       })
       .addCase(post.fulfilled, (state, action) => {
         state.status = "Successfully!";
-        state.data.push(action.payload);
+        state.data.unshift(action.payload);
       })
       .addCase(post.rejected, (state, action) => {
         state.status = "Failed!";
         state.error = action.error.message;
       })
+      // ----------- patch ----------------------------------------------------
       .addCase(patch.pending, (state) => {
         state.status = "Pending";
       })
@@ -77,6 +81,7 @@ const userSlice = createSlice({
         state.status = "Failed";
         state.error = action.error.message;
       })
+      // ----------- put ----------------------------------------------------
       .addCase(put.pending, (state) => {
         state.status = "Pending!";
       })
