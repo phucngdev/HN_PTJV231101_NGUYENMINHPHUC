@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "requestId": "ZH7lYGPDIjxoOvEn2giEt",
+      "signal": {},
+      "id": "1af6cee4-ef4a-41e7-aa62-84710e854b51",
+      "name": "Phúc nguyễn",
+      "email": "phucnguyen09022003@gmail.com",
+      "dateOfBirth": "2024-02-08",
+      "updatedTime": "23:20:12 26/2/2024",
+      "status": 1
+    },
+    {
+      "id": "9f29919a-0455-4ef1-a754-82d661c2f7b1",
+      "status": 1,
+      "name": "Phúc nguyễn 1232312",
+      "email": "phucnguyen09022003@gmail.com",
+      "dateOfBirth": "2024-02-02",
+      "address": "Việt cường",
+      "createdTime": "20:21:57 26/2/2024",
+      "updatedTime": "22:30:35 26/2/2024"
+    },
+    {
+      "id": "d785c0e3-cda8-4e88-ae39-b88bba1d6bd9",
+      "status": 1,
+      "name": "Phúc nguyễnbnbnbn",
+      "email": "phucnguyen09022003@gmail.com",
+      "dateOfBirth": "2024-02-07",
+      "address": "Việt cường",
+      "createdTime": "23:21:00 26/2/2024"
+    }
+  ]
+}
