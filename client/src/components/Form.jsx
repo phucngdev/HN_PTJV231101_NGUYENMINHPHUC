@@ -8,6 +8,8 @@ import { post } from "../services/user.service";
 
 const Form = ({ setShowForm }) => {
   const dispatch = useDispatch();
+
+  // hàm validate và submit form
   const formik = useFormik({
     initialValues: {
       name: "",

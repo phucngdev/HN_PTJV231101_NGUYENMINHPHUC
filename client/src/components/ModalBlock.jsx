@@ -5,39 +5,49 @@ import { message } from "antd";
 
 const ModalBlock = ({ selectedId, setShowBlock }) => {
   const dispatch = useDispatch();
+  // lấy dữ liệu user
   const dataUser = useSelector((state) => state.user.userEdit);
 
+  // hàm lấy dữ liệu 1 user qua id
   const loadDataUser = () => {
     dispatch(findOne(selectedId));
   };
+
   useEffect(() => {
     loadDataUser();
   }, []);
 
-  const blockUser = () => {
-    dispatch(patch({ id: selectedId, statusUpdate: { status: 0 } }));
-  };
-  const unBlockUser = () => {
-    dispatch(patch({ id: selectedId, statusUpdate: { status: 1 } }));
-  };
-
+  // hàm close form edit
   const handleCloseShow = () => {
     setShowBlock(false);
   };
-  const handleBlock = () => {
-    blockUser();
-    message.success({
-      content: "block successful. Welcome!",
-    });
-    setShowBlock(false);
+
+  // hàm block, thay đổi key status user = 0
+  const handleBlock = async () => {
+    try {
+      await dispatch(patch({ id: selectedId, statusUpdate: { status: 0 } }));
+      message.success({
+        content: "block successful!",
+      });
+      setShowBlock(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const handleUnBlock = () => {
-    unBlockUser();
-    message.success({
-      content: "unblock successful. Welcome!",
-    });
-    setShowBlock(false);
+
+  // hàm unblock. thay đổi key status user = 1
+  const handleUnBlock = async () => {
+    try {
+      await dispatch(patch({ id: selectedId, statusUpdate: { status: 1 } }));
+      message.success({
+        content: "unblock successful!",
+      });
+      setShowBlock(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <>
       <div className="overlay" hidden="">

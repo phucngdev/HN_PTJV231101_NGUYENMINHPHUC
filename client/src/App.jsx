@@ -6,6 +6,8 @@ import Table from "./layout/Table";
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [search, setSearch] = useState("");
+
+  // hàm refresh input search
   const handleRefresh = () => {
     setSearch("");
   };

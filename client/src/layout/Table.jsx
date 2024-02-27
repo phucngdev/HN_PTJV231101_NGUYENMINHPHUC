@@ -15,6 +15,7 @@ const Table = ({ search }) => {
   const [selectedId, setSelectedId] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
 
+  // làm lấy tất cả user
   const loadDataUser = () => {
     dispatch(findAll());
   };
@@ -23,6 +24,7 @@ const Table = ({ search }) => {
     loadDataUser();
   }, []);
 
+  // hàm lọc tìm kiếm theo email sau 300ms khi ngừoi dùng nhập vào search
   useEffect(() => {
     const debouncedFilter = _debounce(() => {
       const filtered = dataUser?.filter((user) =>
@@ -36,16 +38,19 @@ const Table = ({ search }) => {
     };
   }, [search, dataUser]);
 
+  // hàm hiểm thị modal block và set lại id selected
   const handleShowBlock = (id) => {
     setShowBlock(true);
     setSelectedId(id);
   };
 
+  // hàm hiểm thị modal xoá và set lại id selected
   const handleShowDelete = (id) => {
     setShowDelete(true);
     setSelectedId(id);
   };
 
+  // hàm hiểm thị modal edit và set lại id selected
   const handleShowEdit = (id) => {
     setShowEdit(true);
     setSelectedId(id);

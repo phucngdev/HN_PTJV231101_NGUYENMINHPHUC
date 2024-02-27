@@ -5,19 +5,25 @@ import { remove } from "../services/user.service";
 
 const ModalDelete = ({ selectedId, setShowDelete }) => {
   const dispatch = useDispatch();
-  const deleteDataUser = () => {
-    dispatch(remove(selectedId));
-  };
+
+  // hàm đóng modal xác nhận
   const handleCloseShow = () => {
     setShowDelete(false);
   };
-  const handleDelete = () => {
-    deleteDataUser();
-    message.success({
-      content: "remove successful. Welcome!",
-    });
-    setShowDelete(false);
+
+  // hàm xoá user qua id
+  const handleDelete = async () => {
+    try {
+      await dispatch(remove(selectedId));
+      message.success({
+        content: "Remove successful!",
+      });
+      setShowDelete(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <>
       <div className="overlay" hidden="">
