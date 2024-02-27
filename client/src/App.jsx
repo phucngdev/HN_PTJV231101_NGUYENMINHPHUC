@@ -7,6 +7,7 @@ import Table from "./layout/Table";
 
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [search, setSearch] = useState("");
 
   return (
     <>
@@ -26,13 +27,15 @@ function App() {
               <input
                 style={{ width: 350 }}
                 type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 className="form-control"
                 placeholder="Tìm kiếm theo email"
               />
               <i className="fa-solid fa-arrows-rotate" title="Refresh" />
             </div>
             {/* Danh sách nhân viên */}
-            <Table></Table>
+            <Table search={search}></Table>
           </main>
         </div>
 

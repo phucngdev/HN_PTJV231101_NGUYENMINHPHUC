@@ -98,8 +98,8 @@ const FormEdit = ({ selectedId, setShowEdit }) => {
               className="form-control"
             />
           </div>
-          {formik.touched.date && formik.errors.date ? (
-            <div className="form-text error">{formik.errors.date}</div>
+          {formik.touched.dateOfBirth && formik.errors.dateOfBirth ? (
+            <div className="form-text error">{formik.errors.dateOfBirth}</div>
           ) : null}
           <div>
             <label className="form-label" htmlFor="email">

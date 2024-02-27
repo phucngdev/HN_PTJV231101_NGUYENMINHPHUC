@@ -5,7 +5,7 @@ import ModalBlock from "../components/ModalBlock";
 import ModalDelete from "../components/ModalDelete";
 import FormEdit from "../components/FormEdit";
 
-const Table = () => {
+const Table = ({ search }) => {
   const dispatch = useDispatch();
   const dataUser = useSelector((state) => state.user.data);
   const [showDelete, setShowDelete] = useState(false);
@@ -35,6 +35,11 @@ const Table = () => {
     setSelectedId(id);
   };
 
+  const filteredData = dataUser.filter((user) =>
+    user.email.toLowerCase().includes(search.toLowerCase())
+  );
+  console.log(filteredData);
+
   return (
     <>
       {showBlock && (
@@ -62,63 +67,71 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {dataUser?.map((user, index) => (
-            <tr key={user.id}>
-              <td>{index + 1}</td>
-              <td>{user.name}</td>
-              <td>{user.dateOfBirth}</td>
-              <td>{user.email}</td>
-              <td>{user.address}</td>
-              <td>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          {filteredData?.length > 0 ? (
+            filteredData?.map((user, index) => (
+              <tr key={user.id}>
+                <td>{index + 1}</td>
+                <td>{user.name}</td>
+                <td>{user.dateOfBirth}</td>
+                <td>{user.email}</td>
+                <td>{user.address}</td>
+                <td>
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  >
+                    {user.status === 1 ? (
+                      <>
+                        <div className="status status-active" />
+                        <span> Đang hoạt động</span>
+                      </>
+                    ) : (
+                      <>
+                        <div className="status status-stop" />
+                        <span> Ngừng hoạt động</span>
+                      </>
+                    )}
+                  </div>
+                </td>
+                <td>
                   {user.status === 1 ? (
-                    <>
-                      <div className="status status-active" />
-                      <span> Đang hoạt động</span>
-                    </>
+                    <span
+                      onClick={() => handleShowBlock(user.id)}
+                      className="button button-block"
+                    >
+                      Chặn
+                    </span>
                   ) : (
-                    <>
-                      <div className="status status-stop" />
-                      <span> Ngừng hoạt động</span>
-                    </>
+                    <span
+                      onClick={() => handleShowBlock(user.id)}
+                      className="button button-block"
+                    >
+                      Bỏ chặn
+                    </span>
                   )}
-                </div>
-              </td>
-              <td>
-                {user.status === 1 ? (
+                </td>
+                <td>
                   <span
-                    onClick={() => handleShowBlock(user.id)}
-                    className="button button-block"
+                    onClick={() => handleShowEdit(user.id)}
+                    className="button button-edit"
                   >
-                    Chặn
+                    Sửa
                   </span>
-                ) : (
+                </td>
+                <td>
                   <span
-                    onClick={() => handleShowBlock(user.id)}
-                    className="button button-block"
+                    onClick={() => handleShowDelete(user.id)}
+                    className="button button-delete"
                   >
-                    Bỏ chặn
+                    Xóa
                   </span>
-                )}
-              </td>
-              <td>
-                <span
-                  onClick={() => handleShowEdit(user.id)}
-                  className="button button-edit"
-                >
-                  Sửa
-                </span>
-              </td>
-              <td>
-                <span
-                  onClick={() => handleShowDelete(user.id)}
-                  className="button button-delete"
-                >
-                  Xóa
-                </span>
-              </td>
-            </tr>
-          ))}
+                </td>
+              </tr>
+            ))
+          ) : (
+            <>
+              <span>Không có kết quả tìm kiếm</span>
+            </>
+          )}
         </tbody>
       </table>
       <footer className="d-flex justify-content-end">

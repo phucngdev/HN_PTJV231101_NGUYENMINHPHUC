@@ -54,29 +54,28 @@ const userSlice = createSlice({
         state.status = "Pending!";
       })
       .addCase(post.fulfilled, (state, action) => {
-        state.status = "Successfully!"; // trả về trạng thái thành công
-        state.data.push(action.payload); // gán lại dữ liệu lấy từ api cho giá trị khởi tạo
+        state.status = "Successfully!";
+        state.data.push(action.payload);
       })
       .addCase(post.rejected, (state, action) => {
         state.status = "Failed!";
-        state.error = action.error.message; // lấy ra nội dung lỗi
+        state.error = action.error.message;
       })
       .addCase(patch.pending, (state) => {
-        state.status = "Pending"; // Đặt trạng thái là "Pending" khi yêu cầu gửi đi
+        state.status = "Pending";
       })
       .addCase(patch.fulfilled, (state, action) => {
-        state.status = "Success"; // Đặt trạng thái là "Success" khi yêu cầu thành công
-        // Cập nhật thông tin người dùng đã sửa
+        state.status = "Success";
         state.data = state.data.map((user) => {
           if (user.id === action.payload.id) {
-            return { ...user, ...action.payload }; // Cập nhật các trường mới từ phản hồi API
+            return { ...user, ...action.payload };
           }
           return user;
         });
       })
       .addCase(patch.rejected, (state, action) => {
-        state.status = "Failed"; // Đặt trạng thái là "Failed" khi yêu cầu thất bại
-        state.error = action.error.message; // Lưu thông báo lỗi
+        state.status = "Failed";
+        state.error = action.error.message;
       })
       .addCase(put.pending, (state) => {
         state.status = "Pending!";
@@ -85,7 +84,7 @@ const userSlice = createSlice({
         state.status = "Successfully!";
         state.data = state.data.map((user) => {
           if (user.id === action.payload?.id) {
-            return { ...user, ...action.payload }; // Cập nhật các trường mới từ phản hồi API
+            return { ...user, ...action.payload };
           }
           return user;
         });
