@@ -5,10 +5,13 @@ import ModalBlock from "../components/ModalBlock";
 import ModalDelete from "../components/ModalDelete";
 import FormEdit from "../components/FormEdit";
 import _debounce from "lodash/debounce";
+import { Button } from "antd";
 
 const Table = ({ search }) => {
   const dispatch = useDispatch();
   const dataUser = useSelector((state) => state.user.data);
+  const [showItem, setShowItem] = useState(10);
+  const [currentPage, setCurrentPage] = useState(0);
   const [showDelete, setShowDelete] = useState(false);
   const [showBlock, setShowBlock] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -37,6 +40,17 @@ const Table = ({ search }) => {
       debouncedFilter.cancel();
     };
   }, [search, dataUser]);
+
+  // phân trang
+  const startIndex = currentPage * showItem;
+  const endIndex = startIndex + showItem;
+  const visibleData = filteredData.slice(startIndex, endIndex);
+  console.log(visibleData);
+
+  // Hàm thay đổi trang
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   // hàm hiểm thị modal block và set lại id selected
   const handleShowBlock = (id) => {
@@ -85,10 +99,10 @@ const Table = ({ search }) => {
           </tr>
         </thead>
         <tbody>
-          {filteredData?.length > 0 ? (
-            filteredData?.map((user, index) => (
+          {visibleData?.length > 0 ? (
+            visibleData?.map((user, index) => (
               <tr key={user.id}>
-                <td>{index + 1}</td>
+                <td>{startIndex + index + 1}</td>
                 <td>{user.name}</td>
                 <td>{user.dateOfBirth}</td>
                 <td>{user.email}</td>
@@ -152,13 +166,34 @@ const Table = ({ search }) => {
           )}
         </tbody>
       </table>
-      <footer className="d-flex justify-content-end">
+      <footer className="d-flex justify-content-between">
+        <div className="d-flex align-items-center">
+          <Button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 0}
+          >
+            Prev
+          </Button>
+          <span className="p-2">Trang {currentPage + 1}</span>
+          <Button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={endIndex >= filteredData.length}
+          >
+            Next
+          </Button>
+        </div>
         <div className="d-flex align-items-center gap-3">
-          <select className="form-select">
-            <option selected>Hiển thị 10 bản ghi trên trang</option>
-            <option>Hiển thị 20 bản ghi trên trang</option>
-            <option>Hiển thị 50 bản ghi trên trang</option>
-            <option>Hiển thị 100 bản ghi trên trang</option>
+          <select
+            value={showItem}
+            onChange={(e) => setShowItem(e.target.value)}
+            className="form-select"
+          >
+            <option value={10} selected>
+              Hiển thị 10 bản ghi trên trang
+            </option>
+            <option value={20}>Hiển thị 20 bản ghi trên trang</option>
+            <option value={50}>Hiển thị 50 bản ghi trên trang</option>
+            <option value={100}>Hiển thị 100 bản ghi trên trang</option>
           </select>
         </div>
       </footer>
