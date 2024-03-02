@@ -22,25 +22,14 @@ const ModalBlock = ({ selectedId, setShowBlock }) => {
     setShowBlock(false);
   };
 
-  // hàm block, thay đổi key status user = 0
-  const handleBlock = async () => {
+  // hàm thay đổi key status user
+  const handleBlock = async (status) => {
     try {
-      await dispatch(patch({ id: selectedId, statusUpdate: { status: 0 } }));
+      await dispatch(
+        patch({ id: selectedId, statusUpdate: { status: status } })
+      );
       message.success({
         content: "block successful!",
-      });
-      setShowBlock(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // hàm unblock. thay đổi key status user = 1
-  const handleUnBlock = async () => {
-    try {
-      await dispatch(patch({ id: selectedId, statusUpdate: { status: 1 } }));
-      message.success({
-        content: "unblock successful!",
       });
       setShowBlock(false);
     } catch (error) {
@@ -69,11 +58,11 @@ const ModalBlock = ({ selectedId, setShowBlock }) => {
               Hủy
             </button>
             {dataUser?.status === 1 ? (
-              <button onClick={handleBlock} className="btn btn-danger">
+              <button onClick={() => handleBlock(0)} className="btn btn-danger">
                 Xác nhận
               </button>
             ) : (
-              <button onClick={handleUnBlock} className="btn btn-danger">
+              <button onClick={() => handleBlock(1)} className="btn btn-danger">
                 Xác nhận
               </button>
             )}

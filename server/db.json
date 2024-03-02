@@ -12,7 +12,7 @@
     },
     {
       "id": "55b01690-8452-433a-8e3d-a218d01bcd18",
-      "status": 0,
+      "status": 1,
       "name": "Trần Thị B",
       "email": "b1999@gmail.com",
       "dateOfBirth": "2024-02-09",
@@ -144,6 +144,15 @@
       "dateOfBirth": "2024-02-01",
       "address": "Việt cường",
       "createdTime": "12:24:17 28/2/2024"
+    },
+    {
+      "id": "1fe7ce88-55a2-4c1a-86b2-9cf58e4fd964",
+      "status": 1,
+      "name": "cá",
+      "email": "ca@gmail.com",
+      "dateOfBirth": "2024-01-29",
+      "address": "nước",
+      "createdTime": "15:12:02 28/2/2024"
     }
   ]
 }
